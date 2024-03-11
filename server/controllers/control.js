@@ -93,6 +93,7 @@ exports.sendImage = (req, res) => {
 exports.getalbums = (req, res) => {
   db.getalbums((err, output) => {
     if (err) {
+      console.log(err,output);
       res.status(500).json("Internal server error");
     } else {
       res.status(200).send(output);
