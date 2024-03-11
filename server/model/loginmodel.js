@@ -11,7 +11,7 @@ exports.createuser = (userdeatils, callback) => {
     }
     console.log(result);
 
-    if (result.length > 0|| result) {
+    if (result.length > 0 || result) {
       // console.log(result.length);
       callback({ alreadyExists: true }, null);
       console.log(result);
@@ -39,7 +39,8 @@ exports.LoginUser = (Logindata, callback) => {
     if (err) {
       callback(err, null);
     }
-    if (result.length > 0|| result) {
+    
+    if (result.length > 0 || result) {
       console.log(result);
       if (result[0].Password === Password) {
         callback(null, { Message: "Login Successfull", ...result });
