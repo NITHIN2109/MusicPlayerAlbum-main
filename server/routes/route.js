@@ -7,7 +7,7 @@ const { verifyUser } = require("../middleware/verify");
 
 route.post("/SignUp", control.createuser);
 route.post("/Login", control.LoginUser);
-route.get("/", control.verifyUSer);
+route.get("/", control.verifyUser);
 route
   .route("/users/:id")
   .put(verifyUser, admincontrol.updateUsers)
