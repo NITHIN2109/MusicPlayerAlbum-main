@@ -40,6 +40,11 @@ exports.LoginUser = (req, res) => {
           expiresIn: "1d",
         }
       );
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: true, // Set to true for HTTPS deployment
+        sameSite: 'none', // Set appropriately based on your requirements
+      });
       res.cookie("token", token);
       console.log(user);
       const isadmin = role == "admin";
@@ -82,16 +87,23 @@ exports.LoginUser = (req, res) => {
 
 
 exports.verifyUser = (req, res) => {
-  console.log('Request Headers:', req.headers);
+  console.log('Request Cookies:', req.cookies); // Log cookies for debugging
+  const tokenFromCookie = req.cookies.token;
   const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  let token;
+  if (tokenFromCookie) {
+    token = tokenFromCookie;
+  } else if (authHeader && authHeader.startsWith("Bearer ")) {
+    token = authHeader.split(" ")[1];
+  }
+
+  if (!token) {
     return res.status(403).json({
       auth: false,
       message: "No token provided.",
     });
   }
 
-  const token = authHeader.split(" ")[1];
   try {
     const decode = jwt.verify(token, process.env.Secret_key);
     const username = decode.name;
