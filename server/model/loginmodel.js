@@ -160,6 +160,7 @@ exports.getalbums = (callback) => {
   `;
   db.query(query, (err, result) => {
     if (err) {
+      console.log(err);
       return callback(err, null);
     }
     const albumsWithSongs = result.map((album) => {
