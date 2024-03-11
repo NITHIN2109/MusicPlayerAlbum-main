@@ -155,7 +155,7 @@ exports.getalbums = (callback) => {
            GROUP_CONCAT(s.song_name) AS song_filenames,
            GROUP_CONCAT(s.song_id) AS song_ids
     FROM albums a
-    LEFT JOIN songs s ON a.id = s.album_id
+    LEFT JOIN Songs s ON a.id = s.album_id
     GROUP BY a.id
   `;
   db.query(query, (err, result) => {
