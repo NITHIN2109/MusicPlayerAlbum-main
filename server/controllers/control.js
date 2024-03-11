@@ -53,16 +53,44 @@ exports.LoginUser = (req, res) => {
   });
 };
 
-exports.verifyUSer = (req, res) => {
+// exports.verifyUSer = (req, res) => {
+//   console.log('Request Headers:', req.headers);
+//   console.log(req.cookies);
+//   const token = req.cookies.token;
+//   if (!token) {
+//     return res.status(403).json({
+//       auth: false,
+//       message: "No token provided.",
+//     });
+//   }
+//   try {
+//     const decode = jwt.verify(token, process.env.Secret_key);
+//     const username = decode.name;
+//     return res.status(200).json({
+//       auth: true,
+//       name: username,
+//       message: "Token verified successfully",
+//       isadmin: decode.role === "admin" ? true : false,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).send("Internal error");
+//   }
+// };
+
+
+
+exports.verifyUser = (req, res) => {
   console.log('Request Headers:', req.headers);
-  console.log(req.cookies);
-  const token = req.cookies.token;
-  if (!token) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(403).json({
       auth: false,
       message: "No token provided.",
     });
   }
+
+  const token = authHeader.split(" ")[1];
   try {
     const decode = jwt.verify(token, process.env.Secret_key);
     const username = decode.name;

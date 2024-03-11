@@ -64,22 +64,50 @@ export const AuthContextProvider = ({ children }) => {
   //     if (err.response?.status === 401) alert(err.response.data.message);
   //   }
   // };
+  // const login = async (loginData) => {
+  //   try {
+  //     const res = await axios.post("https://musicplayeralbum-main.onrender.com/Login", loginData, {
+  //       withCredentials: true,
+  //     });
+
+  //     if (res.status === 200) {
+  //       navigate("/dashboard/home");
+  //       const setCookieHeader = res.headers["set-Cookie"];
+  //       console.log("Set-Cookie Header:", setCookieHeader);
+  //       setIsLoggedIn(true);
+  //       setIsAdmin(res.data.isadmin);
+  //       console.log(res.data.isadmin);
+  //       setUsername(res.data.name);
+  //     }
+
+  //     console.log(res);
+  //     console.log(res.data.message);
+  //   } catch (err) {
+  //     throw new Error(
+  //       err.response?.data?.message || "An error occurred during login"
+  //     );
+  //   }
+  // };
+
   const login = async (loginData) => {
     try {
-      const res = await axios.post("https://musicplayeralbum-main.onrender.com/Login", loginData, {
-        withCredentials: true,
-      });
-
+      const res = await axios.post(
+        "https://musicplayeralbum-main.onrender.com/Login",
+        loginData,
+        {
+          withCredentials: true,
+        }
+      );
+  
       if (res.status === 200) {
+        const token = res.data.token; // Assuming the token is returned in the response data
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         navigate("/dashboard/home");
-        const setCookieHeader = res.headers["set-Cookie"];
-        console.log("Set-Cookie Header:", setCookieHeader);
         setIsLoggedIn(true);
         setIsAdmin(res.data.isadmin);
-        console.log(res.data.isadmin);
         setUsername(res.data.name);
       }
-
+  
       console.log(res);
       console.log(res.data.message);
     } catch (err) {
@@ -88,7 +116,7 @@ export const AuthContextProvider = ({ children }) => {
       );
     }
   };
-
+  
   const logout = (e) => {
     e.preventDefault();
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
