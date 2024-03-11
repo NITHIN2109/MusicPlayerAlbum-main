@@ -163,6 +163,7 @@ function SingleAlbum() {
         console.log(error);
         // setLoading(true);
       });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [albumId]);
   // useEffect(() => {
   //   setSongDetails(album.songs);

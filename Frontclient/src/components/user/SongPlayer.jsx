@@ -35,6 +35,7 @@ function SongPlayer() {
 
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying]);
   const handleSeekToTime = (e) => {
     const newProgress = parseInt(e.target.value);

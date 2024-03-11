@@ -44,6 +44,7 @@ function AlbumDetails() {
     // updateAlbumId(parseInt(albumId));
 
     // Update albums directly without indexing [0]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [albumId]);
 
   const downloadFile = async (songId) => {

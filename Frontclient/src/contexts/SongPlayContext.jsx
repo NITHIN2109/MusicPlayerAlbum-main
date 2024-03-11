@@ -29,6 +29,8 @@ export const SongProvider = ({ children }) => {
     if (!isLoggedIn) {
       stopPlayer();
     }
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
   const updateAlbumId = (newAlbumId) => {
     setAlbumId(newAlbumId);

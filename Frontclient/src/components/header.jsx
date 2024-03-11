@@ -8,7 +8,7 @@ import { FaUsers } from "react-icons/fa";
 import { LuListMusic } from "react-icons/lu";
 import { useSongContext } from "../contexts/SongPlayContext";
 function Header() {
-  const { isLoggedIn, logout, isAdmin } = useAuth();
+  const {  logout, isAdmin } = useAuth();
   const { cleardata } = useSongContext();
   return (
     <header className="nav-bar">

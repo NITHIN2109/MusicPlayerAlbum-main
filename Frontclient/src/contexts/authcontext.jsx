@@ -36,6 +36,8 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     fetchData();
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   // const login = async (loginData) => {
