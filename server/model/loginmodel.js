@@ -14,6 +14,7 @@ exports.createuser = (userdeatils, callback) => {
     if (result.length > 0|| result) {
       // console.log(result.length);
       callback({ alreadyExists: true }, null);
+      console.log(result);
       return;
     }
     let query = `Insert into users(Name,Email,Password) values ("${Name}","${Email}","${Password}")`;
@@ -34,15 +35,17 @@ exports.LoginUser = (Logindata, callback) => {
 
   let query = `SELECT * FROM users WHERE Email='${Email}'`;
   db.query(query, (err, result) => {
+     console.log(result);
     if (err) {
       callback(err, null);
     }
-    if (result.length > 0) {
+    if (result.length > 0|| result) {
       console.log(result);
       if (result[0].Password === Password) {
         callback(null, { Message: "Login Successfull", ...result });
         return;
       } else {
+         console.log(result);
         callback(null, { Message: "Wrong password" });
         return;
       }
