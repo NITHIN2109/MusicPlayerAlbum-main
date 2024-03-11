@@ -120,6 +120,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = (e) => {
     e.preventDefault();
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    axios.defaults.headers.common["Authorization"] = `Bearer undefined`;
     navigate("/Login");
     setIsLoggedIn(false);
     setIsAdmin(false);
