@@ -30,7 +30,7 @@ function AlbumManagement() {
     }
     console.log(newformdata);
     axios
-      .post("http://localhost:8080/Album", newformdata, {
+      .post("https://musicplayeralbum-main.onrender.com/Album", newformdata, {
         withCredentials: true,
       })
       .then((res) => {
@@ -75,7 +75,7 @@ function AlbumManagement() {
             <Link to={`/dashboard/album/${album.id}`} key={album.id}>
               <div className="album-card">
                 <img
-                  src={`http://localhost:8080/uploads/${album.coverImage}`}
+                  src={`https://musicplayeralbum-main.onrender.com/uploads/${album.coverImage}`}
                   alt="Album Cover"
                 />
                 <p>
