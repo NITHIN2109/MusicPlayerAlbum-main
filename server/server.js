@@ -8,7 +8,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: ["https://beautiful-flan-b2ec4e.netlify.app/"],
   })
 );
 app.use(cookieparser());
