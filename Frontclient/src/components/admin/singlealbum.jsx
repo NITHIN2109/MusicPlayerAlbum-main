@@ -54,7 +54,7 @@ function SingleAlbum() {
 
   const handleUpdateClick = () => {
     axios
-      .put(`http://localhost:8080/album/${albumId}`, editedFields, {
+      .put(`https://musicplayeralbum-main.onrender.com/album/${albumId}`, editedFields, {
         withCredentials: true,
       })
       .then((res) => {
@@ -78,7 +78,7 @@ function SingleAlbum() {
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:8080/album/${albumId}`, {
+      .delete(`https://musicplayeralbum-main.onrender.com/album/${albumId}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -102,7 +102,7 @@ function SingleAlbum() {
   // };
   const handleDeleteSong = (songId) => {
     axios
-      .delete(`http://localhost:8080/songs/${songId}`, {
+      .delete(`https://musicplayeralbum-main.onrender.com/songs/${songId}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -130,7 +130,7 @@ function SingleAlbum() {
       newSongData.append("song", songData.songs[i]);
     }
     axios
-      .post(`http://localhost:8080/album/${albumId}`, newSongData, {
+      .post(`https://musicplayeralbum-main.onrender.com/album/${albumId}`, newSongData, {
         withCredentials: true,
       })
       .then((res) => {
@@ -148,7 +148,7 @@ function SingleAlbum() {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/album/${albumId}`)
+      .get(`https://musicplayeralbum-main.onrender.com/album/${albumId}`)
       .then((response) => {
         // console.log(response);
 
@@ -179,7 +179,7 @@ function SingleAlbum() {
         <div className="image">
           {/* {console.log(album)} */}
           <img
-            src={`http://localhost:8080/uploads/${album.coverImage}`}
+            src={`https://musicplayeralbum-main.onrender.com/uploads/${album.coverImage}`}
             alt="Album Cover"
           />
         </div>

@@ -28,7 +28,7 @@ function AlbumDetails() {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/album/${albumId}`)
+      .get(`https://musicplayeralbum-main.onrender.com/album/${albumId}`)
       .then((response) => {
         console.log(response);
         setalbums(response.data[0]);
@@ -49,7 +49,7 @@ function AlbumDetails() {
 
   const downloadFile = async (songId) => {
     const link = document.createElement("a");
-    link.href = `http://localhost:8080/song/${songId}`;
+    link.href = `https://musicplayeralbum-main.onrender.com/song/${songId}`;
     link.setAttribute("download", `${songId}.mp3`);
     document.body.appendChild(link); // Append link to the body
     link.click();
@@ -65,7 +65,7 @@ function AlbumDetails() {
           <div className="album-details-content">
             <div className="album-details-left">
               <img
-                src={`http://localhost:8080/uploads/${albums.coverImage}`}
+                src={`https://musicplayeralbum-main.onrender.com/uploads/${albums.coverImage}`}
                 alt="Album Cover"
                 className="album-cover"
               />

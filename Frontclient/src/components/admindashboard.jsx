@@ -12,7 +12,7 @@ const Admindashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/users", { withCredentials: true })
+      .get("https://musicplayeralbum-main.onrender.com/users", { withCredentials: true })
       .then((response) => {
         setUsers(response.data);
       })

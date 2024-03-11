@@ -12,7 +12,7 @@ export const AlbumProvider = ({ children }) => {
   useEffect(() => {
     if (isLoggedIn) {
       axios
-        .get("http://localhost:8080/albums")
+        .get("https://musicplayeralbum-main.onrender.com/albums")
         .then((response) => {
           setAlbums(response.data);
           setLoading(false);
@@ -28,7 +28,7 @@ export const AlbumProvider = ({ children }) => {
 
   const refreshAlbums = () => {
     axios
-      .get("http://localhost:8080/albums", { withCredentials: true })
+      .get("https://musicplayeralbum-main.onrender.com/albums", { withCredentials: true })
       .then((response) => {
         setAlbums(response.data);
       })

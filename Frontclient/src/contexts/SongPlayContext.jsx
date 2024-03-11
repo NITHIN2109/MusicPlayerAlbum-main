@@ -21,7 +21,7 @@ export const SongProvider = ({ children }) => {
   };
   useEffect(() => {
     if (audio) {
-      audio.src = `http://localhost:8080/songs/${currentSongId}`;
+      audio.src = `https://musicplayeralbum-main.onrender.com/songs/${currentSongId}`;
       audio.play();
     }
   }, [currentSongId, audio]);
@@ -50,7 +50,7 @@ export const SongProvider = ({ children }) => {
     setIsPlaying(true);
 
     if (audio) {
-      audio.src = `http://localhost:8080/songs/${album.songs[songIndex].song_id}`;
+      audio.src = `https://musicplayeralbum-main.onrender.com/songs/${album.songs[songIndex].song_id}`;
       audio.load();
       audio.addEventListener("canplaythrough", () => {
         if (
@@ -67,7 +67,7 @@ export const SongProvider = ({ children }) => {
       });
     } else {
       const newAudio = new Audio(
-        `http://localhost:8080/songs/${album.songs[songIndex].song_id}`
+        `https://musicplayeralbum-main.onrender.com/songs/${album.songs[songIndex].song_id}`
       );
       newAudio.addEventListener("loadedmetadata", () => {
         if (

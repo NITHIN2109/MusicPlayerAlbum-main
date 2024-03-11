@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("http://localhost:8080", {
+        const res = await axios.get("https://musicplayeralbum-main.onrender.com", {
           withCredentials: true,
         });
         if (res.status === 200) {
@@ -40,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
 
   // const login = async (loginData) => {
   //   try {
-  //     const res = await axios.post("http://localhost:8080/Login", loginData, {
+  //     const res = await axios.post("https://musicplayeralbum-main.onrender.com/Login", loginData, {
   //       withCredentials: true,
   //     });
 
@@ -64,7 +64,7 @@ export const AuthContextProvider = ({ children }) => {
   // };
   const login = async (loginData) => {
     try {
-      const res = await axios.post("http://localhost:8080/Login", loginData, {
+      const res = await axios.post("https://musicplayeralbum-main.onrender.com/Login", loginData, {
         withCredentials: true,
       });
 

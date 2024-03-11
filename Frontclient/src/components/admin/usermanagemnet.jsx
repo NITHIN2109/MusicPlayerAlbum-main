@@ -26,7 +26,7 @@ const UserManagement = ({ users, setUsers }) => {
       return;
     }
     axios
-      .post("http://localhost:8080/users", newUser, { withCredentials: true })
+      .post("https://musicplayeralbum-main.onrender.com/users", newUser, { withCredentials: true })
       .then((response) => {
         if (response.status === 201) {
           setFilteredUsers((prevUsers) => [
@@ -49,7 +49,7 @@ const UserManagement = ({ users, setUsers }) => {
 
   const handleDeleteUser = (userId) => {
     axios
-      .delete(`http://localhost:8080/users/${userId}`, {
+      .delete(`https://musicplayeralbum-main.onrender.com/users/${userId}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -66,7 +66,7 @@ const UserManagement = ({ users, setUsers }) => {
 
   const handleUpdateUser = (userId, updatedUserData) => {
     axios
-      .put(`http://localhost:8080/users/${userId}`, updatedUserData, {
+      .put(`https://musicplayeralbum-main.onrender.com/users/${userId}`, updatedUserData, {
         withCredentials: true,
       })
       .then((response) => {

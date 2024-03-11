@@ -39,7 +39,7 @@ function Search() {
           >
             <div className="album-card">
               <img
-                src={`http://localhost:8080/uploads/${album.coverImage}`}
+                src={`https://musicplayeralbum-main.onrender.com/uploads/${album.coverImage}`}
                 alt="Album Cover"
                 className="album-cover"
               />

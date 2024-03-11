@@ -28,7 +28,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/signUp",
+        "https://musicplayeralbum-main.onrender.com/signUp",
         signUpData
       );
       if (response.status === 201) {
