@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import axios from "axios";
 import { useAuth } from "./contexts/authcontext";
 import Login from "./components/login";
 import Signup from "./components/signup";

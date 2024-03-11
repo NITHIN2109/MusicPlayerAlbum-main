@@ -21,7 +21,6 @@ function SingleAlbum() {
     rating: "",
   });
   const [songData, setSongData] = useState([]);
-  const [addSong, setAddsong] = useState(null);
   const [album, setalbums] = useState();
   const {
     playSong,
@@ -164,7 +163,7 @@ function SingleAlbum() {
         console.log(error);
         // setLoading(true);
       });
-  }, []);
+  }, [albumId]);
   // useEffect(() => {
   //   setSongDetails(album.songs);
   // }, [albumId]);

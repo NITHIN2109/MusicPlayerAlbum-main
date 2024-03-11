@@ -11,7 +11,6 @@ function AlbumDetails() {
     playSong,
     updatealbums,
     isPlaying,
-    currentSongIndex,
     pauseSong,
     currentSongId,
   } = useSongContext();

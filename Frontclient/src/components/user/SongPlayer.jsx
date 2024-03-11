@@ -9,7 +9,6 @@ function SongPlayer() {
   const {
     isPlaying,
     currentSongName,
-    currentSongIndex,
     playNextSong,
     playPreviousSong,
     pauseSong,
