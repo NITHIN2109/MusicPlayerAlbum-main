@@ -140,6 +140,7 @@ exports.LoginUser = (Logindata, callback) => {
         id: user.id,
         Name: user.Name,
         Email: user.Email,
+        role:user.role,
         // Add other necessary user information here
       };
       return callback(null, { Message: "Login Successfull", user: userInfo });
