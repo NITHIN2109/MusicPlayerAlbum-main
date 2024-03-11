@@ -11,7 +11,7 @@ exports.createuser = (userdeatils, callback) => {
     }
     console.log(result);
 
-    if (result.length > 0) {
+    if (result.length > 0|| result) {
       // console.log(result.length);
       callback({ alreadyExists: true }, null);
       return;
