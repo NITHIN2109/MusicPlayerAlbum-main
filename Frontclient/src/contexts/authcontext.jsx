@@ -100,6 +100,7 @@ export const AuthContextProvider = ({ children }) => {
       );
   
       if (res.status === 200) {
+        console.log(res);
         const token = res.data.token; // Assuming the token is returned in the response data
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         navigate("/dashboard/home");
