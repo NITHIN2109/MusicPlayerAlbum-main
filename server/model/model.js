@@ -1,17 +1,39 @@
-const mysql = require("mysql2");
-const config = require("../config/config.js");
-const db = mysql.createConnection({
+const mysql = require('mysql2/promise');
+const config = require('../config/config.js');
+
+// Create a connection pool
+const pool = mysql.createPool({
   host: config.host,
   user: config.user,
   password: config.password,
   database: config.database,
-});
-db.connect((err) => {
-  if (err) {
-    console.log("Error in connecting the database", err);
-    return;
-  }
-  console.log("Database is connected");
+  waitForConnections: true, // Wait for available connection if pool is exhausted
+  connectionLimit: 10, // Maximum number of concurrent connections (adjust based on needs)
+  queueLimit: 0, // Unlimited queue for waiting connections (can be adjusted if needed)
 });
 
-module.exports = db;
+// Function to execute a database query using a connection from the pool
+async function executeQuery(sql, params = []) {
+  try {
+    const connection = await pool.getConnection();
+    const [results] = await connection.query(sql, params);
+    await connection.release(); // Release the connection back to the pool
+    return results;
+  } catch (error) {
+    console.error('Error during database query:', error);
+    throw error; // Re-throw the error for proper handling
+  }
+}
+
+// Usage example:
+async function someDatabaseOperation() {
+  try {
+    // ... your database interaction using executeQuery ...
+  } catch (error) {
+    console.error('Error during database operation:', error);
+  }
+}
+
+someDatabaseOperation();
+
+module.exports = { executeQuery }; // Export the executeQuery function
