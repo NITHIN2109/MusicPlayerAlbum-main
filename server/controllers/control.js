@@ -27,6 +27,7 @@ exports.LoginUser = (req, res) => {
   console.log(loginDetails);
   db.LoginUser(loginDetails, (err, result) => {
     if (err) {
+      console.log(err);
       return res.status(500).json({ Error: "Internal Server Error" });
     } else if (result.Message === "Login Successfull") {
       const name = result[0].Name;
