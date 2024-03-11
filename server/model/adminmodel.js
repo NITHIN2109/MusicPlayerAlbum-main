@@ -105,7 +105,7 @@ exports.getsingleAlbum = (id, cb) => {
              GROUP_CONCAT(s.song_name) AS song_filenames,
              GROUP_CONCAT(s.song_id) AS song_ids
       FROM albums a
-      LEFT JOIN songs s ON a.id = s.album_id
+      LEFT JOIN Songs s ON a.id = s.album_id
       WHERE a.id = ${id}
       GROUP BY a.id
   `;
@@ -179,7 +179,7 @@ exports.deletealbum = (id, cb) => {
         return cb(err, null);
       }
 
-      let query2 = `SELECT  song_id FROM songs WHERE album_id=${id}`;
+      let query2 = `SELECT  song_id FROM Songs WHERE album_id=${id}`;
       db.query(query2, (err, songs) => {
         if (err) {
           console.log(err);
@@ -219,7 +219,7 @@ exports.deletealbum = (id, cb) => {
 };
 exports.addSong = (songDetails, cb) => {
   const query =
-    "INSERT INTO songs ( song_id,album_id,song_name) VALUES (?, ?,?)";
+    "INSERT INTO Songs ( song_id,album_id,song_name) VALUES (?, ?,?)";
   const values = [
     songDetails.song_id,
     songDetails.album_id,
@@ -244,7 +244,7 @@ exports.deleteSongById = (songId, callback) => {
     if (err) {
       return callback(err, null);
     }
-    db.query("DELETE FROM songs WHERE song_id = ?", [songId], (err, result) => {
+    db.query("DELETE FROM Songs WHERE song_id = ?", [songId], (err, result) => {
       if (err) {
         return callback(err, null);
       }
