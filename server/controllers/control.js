@@ -41,7 +41,7 @@ exports.LoginUser = (req, res) => {
         }
       );
       res.cookie("token", token);
-      const isadmin = role === "admin";
+      const isadmin = decode.role === "admin";
       return res
         .status(200)
         .json({ message: "Login Successfull", isadmin: isadmin,token:token });
