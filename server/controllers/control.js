@@ -30,6 +30,7 @@ exports.LoginUser = (req, res) => {
       console.log(err);
       return res.status(500).json({ Error: "Internal Server Error" });
     } else if (result.Message === "Login Successfull") {
+      console.log(result)
       const name = result[0].Name;
       const token = jwt.sign(
         { name: name, role: result[0].role },
