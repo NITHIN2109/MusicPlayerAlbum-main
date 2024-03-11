@@ -44,7 +44,7 @@ exports.LoginUser = (req, res) => {
       const isadmin = role === "admin";
       return res
         .status(200)
-        .json({ message: "Login Successfull", isadmin: isadmin });
+        .json({ message: "Login Successfull", isadmin: isadmin,token:token });
     } else if (result.Message === "Wrong password") {
       return res.status(401).json({ message: "Wrong password" });
     } else {
