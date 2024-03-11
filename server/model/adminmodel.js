@@ -17,6 +17,7 @@ exports.getAllUser = (callback) => {
   });
 };
 
+
 exports.updateUserDetails = (id, updateUserDetails, callback) => {
   let query = `update users set Name='${updateUserDetails.Name}' ,Email='${updateUserDetails.Email}', Password='${updateUserDetails.Password}', role='${updateUserDetails.role}' where id=${id}`;
   db.query(query, (err, result) => {
