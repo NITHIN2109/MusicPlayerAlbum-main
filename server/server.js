@@ -8,7 +8,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["https://beautiful-flan-b2ec4e.netlify.app/"],
+    origin: ["https://beautiful-flan-b2ec4e.netlify.app/","https://musicplayernithin2109.onrender.com],
   })
 );
 app.use(cookieparser());
