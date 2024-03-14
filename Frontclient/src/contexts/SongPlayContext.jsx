@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 // import axios from "axios";
 import { useAuth } from "./authcontext";
+import BASE_URL from "../config/config";
 export const SongContext = createContext();
 
 export const SongProvider = ({ children }) => {
@@ -21,7 +22,7 @@ export const SongProvider = ({ children }) => {
   };
   useEffect(() => {
     if (audio) {
-      audio.src = `https://musicplayeralbum-main.onrender.com/songs/${currentSongId}`;
+      audio.src = `${BASE_URL}/songs/${currentSongId}`;
       audio.play();
     }
   }, [currentSongId, audio]);
@@ -29,8 +30,8 @@ export const SongProvider = ({ children }) => {
     if (!isLoggedIn) {
       stopPlayer();
     }
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
   const updateAlbumId = (newAlbumId) => {
     setAlbumId(newAlbumId);
@@ -52,7 +53,7 @@ export const SongProvider = ({ children }) => {
     setIsPlaying(true);
 
     if (audio) {
-      audio.src = `https://musicplayeralbum-main.onrender.com/songs/${album.songs[songIndex].song_id}`;
+      audio.src = `${BASE_URL}/songs/${album.songs[songIndex].song_id}`;
       audio.load();
       audio.addEventListener("canplaythrough", () => {
         if (
@@ -69,7 +70,7 @@ export const SongProvider = ({ children }) => {
       });
     } else {
       const newAudio = new Audio(
-        `https://musicplayeralbum-main.onrender.com/songs/${album.songs[songIndex].song_id}`
+        `${BASE_URL}/songs/${album.songs[songIndex].song_id}`
       );
       newAudio.addEventListener("loadedmetadata", () => {
         if (

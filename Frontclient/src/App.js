@@ -12,6 +12,7 @@ import AlbumDetails from "./components/user/AlbumDetails";
 import Search from "./components/user/Search";
 
 import "./App.css";
+import "./components/toast.css";
 
 function App() {
   const { isAdmin, isLoggedIn } = useAuth();

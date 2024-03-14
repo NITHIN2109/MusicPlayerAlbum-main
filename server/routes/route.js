@@ -13,7 +13,7 @@ route
   .put(verifyUser, admincontrol.updateUsers)
   .delete(verifyUser, admincontrol.deleteUser);
 
-route.post("/Album", upload, admincontrol.addalbum);
+route.post("/Album", upload, admincontrol.addAlbum);
 route.get("/uploads/:imagename", control.sendImage);
 route.get("/songs/:songname", control.playmusic);
 route.get("/song/:songid", control.songdownload);
@@ -24,15 +24,15 @@ route.get("/song/:songid", control.songdownload);
 route.get("/albums", control.getalbums);
 route
   .route("/album/:albumId")
-  .get(admincontrol.getsingleAlbum)
-  .post(verifyUser, upload, admincontrol.addSong)
-  .put(verifyUser, admincontrol.updatealbum)
-  .delete(verifyUser, admincontrol.deletealbum);
+  .get(admincontrol.getSingleAlbum)
+  .post(verifyUser, upload, admincontrol.addSongToAlbum)
+  .put(verifyUser, admincontrol.updateAlbum)
+  .delete(verifyUser, admincontrol.deleteAlbum);
 
 route
   .route("/users")
   .get(verifyUser, admincontrol.getsUsers)
-  .post(verifyUser, admincontrol.createuser);
+  .post(verifyUser, admincontrol.createUser);
 
 route.delete("/songs/:id", admincontrol.deleteSong);
 

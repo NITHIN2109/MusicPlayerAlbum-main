@@ -1,6 +1,5 @@
-const mysql = require('mysql2/promise');
-
-const config = require('../config/config.js');
+const mysql = require("mysql2/promise");
+const config = require("../config/config.js");
 
 let pool;
 
@@ -10,13 +9,12 @@ async function connect() {
     user: config.user,
     password: config.password,
     database: config.database,
-    // Optional: Set connection pool size and idle timeout
-    connectionLimit: 10, // Maximum number of connections in the pool
-    queueLimit: 0, // No waiting queue for connections
-    waitForConnections: true, // Wait if pool is full
-    idleTimeoutMillis: 10000, // Close idle connections after 10 seconds
+    connectionLimit: 10,
+    queueLimit: 0,
+    waitForConnections: true,
+    idleTimeoutMillis: 10000,
   });
-  console.log('Database connected');
+  console.log("Database connected");
 }
 
 async function query(sql, params) {
@@ -24,7 +22,9 @@ async function query(sql, params) {
     const [results] = await pool.query(sql, params);
     return results;
   } catch (err) {
-    console.error('Error executing database query:', err.message); }
+    console.error("Error executing database query:", err.message);
+    throw err; // Rethrow the error to handle it elsewhere
+  }
 }
 
 connect();

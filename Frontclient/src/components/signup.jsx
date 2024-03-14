@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Auth.css";
+import BASE_URL from "../config/config";
 
 function Signup() {
   const [signUpData, setSignUpData] = useState({
@@ -27,22 +30,23 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post(
-        "https://musicplayeralbum-main.onrender.com/signUp",
-        signUpData
-      );
-      if (response.status === 201) {
-        navigate("/login");
+      const response = await axios.post(`${BASE_URL}/signUp`, signUpData);
+      if (response.status >= 200 && response.status <= 299) {
+        toast.success(response.data.message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       }
-      alert(response.data.message);
     } catch (error) {
       console.error("Error during sign up:", error);
       setError("Error during sign up. Please try again.");
+      toast.error("Error during sign up. Please try again.");
     }
   };
 
   return (
     <div className="signup">
+      <ToastContainer />
       <div className="signup-container">
         <form onSubmit={handleSubmit} className="signup-form">
           <h1>Sign Up</h1>
@@ -89,7 +93,7 @@ function Signup() {
             </button>
 
             <p className="helper-text">
-              Don't have an account?{" "}
+              Already have an account?{" "}
               <Link to="/login" className="login-link">
                 Login
               </Link>

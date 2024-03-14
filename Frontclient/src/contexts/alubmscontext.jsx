@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "./authcontext";
+import BASE_URL from "../config/config";
 
 export const AlbumContext = createContext();
 
@@ -12,7 +13,7 @@ export const AlbumProvider = ({ children }) => {
   useEffect(() => {
     if (isLoggedIn) {
       axios
-        .get("https://musicplayeralbum-main.onrender.com/albums")
+        .get(`${BASE_URL}/albums`)
         .then((response) => {
           setAlbums(response.data);
           setLoading(false);
@@ -28,7 +29,9 @@ export const AlbumProvider = ({ children }) => {
 
   const refreshAlbums = () => {
     axios
-      .get("https://musicplayeralbum-main.onrender.com/albums", { withCredentials: true })
+      .get(`${BASE_URL}/albums`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setAlbums(response.data);
       })

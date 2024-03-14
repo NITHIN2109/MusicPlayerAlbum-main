@@ -7,6 +7,10 @@ import { useSongContext } from "../../contexts/SongPlayContext";
 import { FaPlay, FaPause } from "react-icons/fa";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import { MdDelete } from "react-icons/md";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import BASE_URL from "../../config/config";
+
 function SingleAlbum() {
   const navigate = useNavigate();
   const { albumId } = useParams();
@@ -24,8 +28,6 @@ function SingleAlbum() {
   const [album, setalbums] = useState();
   const {
     playSong,
-    // updateAlbumId,
-
     addsong,
     updatealbums,
     isPlaying,
@@ -33,6 +35,7 @@ function SingleAlbum() {
     pauseSong,
     deletesong,
   } = useSongContext();
+
   const formatDuration = (durationInSeconds) => {
     const minutes = Math.floor(durationInSeconds / 60);
     const seconds = Math.floor(durationInSeconds % 60);
@@ -40,6 +43,7 @@ function SingleAlbum() {
     const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
     return `${formattedMinutes}:${formattedSeconds}`;
   };
+
   const handleEditClick = () => {
     setIsEdit(true);
     setEditedFields({
@@ -53,16 +57,16 @@ function SingleAlbum() {
 
   const handleUpdateClick = () => {
     axios
-      .put(`https://musicplayeralbum-main.onrender.com/album/${albumId}`, editedFields, {
+      .put(`${BASE_URL}/album/${albumId}`, editedFields, {
         withCredentials: true,
       })
       .then((res) => {
-        alert("Updated successfully");
+        toast.success("Updated successfully");
         setalbums({ ...album, ...editedFields });
       })
       .catch((err) => {
         console.error(err);
-        alert("Error updating album");
+        toast.error("Error updating album");
       });
 
     setIsEdit(false);
@@ -77,48 +81,44 @@ function SingleAlbum() {
 
   const handleDelete = () => {
     axios
-      .delete(`https://musicplayeralbum-main.onrender.com/album/${albumId}`, {
+      .delete(`${BASE_URL}/album/${albumId}`, {
         withCredentials: true,
       })
       .then((response) => {
         if (response.status === 200) {
-          alert("Delete Successfully");
+          toast.success("Album deleted successfully");
           navigate("/dashboard/albums");
           refreshAlbums();
         } else {
-          alert("Failed to delete the album");
+          toast.error("Failed to delete the album");
         }
       })
       .catch((err) => {
         console.error(err);
-        alert("Error deleting album");
+        toast.error("Error deleting album");
       });
   };
 
-  // const handlePlaySong = (songName) => {
-  //   // Call the playSong function from the context with the appropriate songName
-  //   playSong(songName);
-  // };
   const handleDeleteSong = (songId) => {
     axios
-      .delete(`https://musicplayeralbum-main.onrender.com/songs/${songId}`, {
+      .delete(`${BASE_URL}/songs/${songId}`, {
         withCredentials: true,
       })
       .then((response) => {
         if (response.status === 200) {
-          alert("Song deleted successfully");
+          toast.success("Song deleted successfully");
           setalbums((prevAlbum) => ({
             ...prevAlbum,
             songs: prevAlbum.songs.filter((song) => song.song_id !== songId),
           }));
           deletesong(songId);
         } else {
-          alert("Failed to delete the song");
+          toast.error("Failed to delete the song");
         }
       })
       .catch((err) => {
         console.error(err);
-        alert("Error deleting song");
+        toast.error("Error deleting song");
       });
   };
 
@@ -129,11 +129,11 @@ function SingleAlbum() {
       newSongData.append("song", songData.songs[i]);
     }
     axios
-      .post(`https://musicplayeralbum-main.onrender.com/album/${albumId}`, newSongData, {
+      .post(`${BASE_URL}/album/${albumId}`, newSongData, {
         withCredentials: true,
       })
       .then((res) => {
-        alert(res.data.message);
+        toast.success(res.data.message);
         addsong(res.data.songDetails);
         setalbums((prevAlbum) => ({
           ...prevAlbum,
@@ -142,44 +142,34 @@ function SingleAlbum() {
       })
       .catch((error) => {
         console.error(error);
-        alert("Error adding song to the album");
+        toast.error("Error adding song to the album");
       });
   };
+
   useEffect(() => {
     axios
-      .get(`https://musicplayeralbum-main.onrender.com/album/${albumId}`)
+      .get(`${BASE_URL}/album/${albumId}`)
       .then((response) => {
-        // console.log(response);
-
         setalbums(response.data[0]);
-        // console.log(response.data[0]);
-        // updateAlbumId(response.data[0].id);
         updatealbums(response.data);
-        // setLoading(false);
-        // console.log(loading);
-        // updatealbums(response.data);
       })
       .catch((error) => {
         console.log(error);
-        // setLoading(true);
       });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [albumId]);
-  // useEffect(() => {
-  //   setSongDetails(album.songs);
-  // }, [albumId]);
+
   if (!album) {
     return <p>Waiting for data to load...</p>;
   }
 
   return (
     <div className="albumdetails">
-      {/* {console.log(album)} */}
+      <ToastContainer />
       <div className="album-left">
         <div className="image">
-          {/* {console.log(album)} */}
           <img
-            src={`https://musicplayeralbum-main.onrender.com/uploads/${album.coverImage}`}
+            src={`${BASE_URL}/uploads/${album.coverImage}`}
             alt="Album Cover"
           />
         </div>
@@ -221,16 +211,23 @@ function SingleAlbum() {
             </div>
           </>
         ) : (
-          <>
+          <div className="album_detailsa">
             <h1>{album.title}</h1>
             <h3>Artist: {album.artist}</h3>
             <h3>Genre: {album.genre}</h3>
             <h3>Release Year: {album.releaseYear}</h3>
             <span>
-              <button onClick={handleEditClick}>Edit</button>
-              <button onClick={() => handleDelete(albumId)}>Delete</button>
+              <button onClick={handleEditClick} className="singlealbumbtn">
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(albumId)}
+                className="singlealbumbtn"
+              >
+                Delete
+              </button>
             </span>
-          </>
+          </div>
         )}
       </div>
       <div className="album-right">

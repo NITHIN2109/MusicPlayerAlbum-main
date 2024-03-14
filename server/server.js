@@ -8,7 +8,11 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["https://musicplayernithin2109.onrender.com","http://musicplayernithin2109.onrender.com"],
+    origin: [
+      "https://musicplayernithin2109.onrender.com",
+      "http://musicplayernithin2109.onrender.com",
+      "http://localhost:3000",
+    ],
   })
 );
 app.use(cookieparser());

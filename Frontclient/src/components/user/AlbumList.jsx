@@ -1,5 +1,6 @@
 import React from "react";
 import { useAlbum } from "../../contexts/alubmscontext";
+import BASE_URL from "../../config/config";
 // import "./AlbumList.css"; // Import CSS file for styling
 
 function AlbumList({ onAlbumClick }) {
@@ -14,7 +15,7 @@ function AlbumList({ onAlbumClick }) {
           onClick={() => onAlbumClick(album)}
         >
           <img
-            src={`https://musicplayeralbum-main.onrender.com/uploads/${album.coverImage}`}
+            src={`${BASE_URL}/uploads/${album.coverImage}`}
             alt="Album Cover"
             className="album-cover"
           />

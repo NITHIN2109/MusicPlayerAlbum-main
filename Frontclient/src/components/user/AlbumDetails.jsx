@@ -6,14 +6,10 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import BASE_URL from "../../config/config";
 function AlbumDetails() {
-  const {
-    playSong,
-    updatealbums,
-    isPlaying,
-    pauseSong,
-    currentSongId,
-  } = useSongContext();
+  const { playSong, updatealbums, isPlaying, pauseSong, currentSongId } =
+    useSongContext();
   const [albums, setalbums] = useState();
   const [loading, setLoading] = useState(true);
   const { albumId } = useParams();
@@ -27,7 +23,7 @@ function AlbumDetails() {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`https://musicplayeralbum-main.onrender.com/album/${albumId}`)
+      .get(`${BASE_URL}/album/${albumId}`)
       .then((response) => {
         console.log(response);
         setalbums(response.data[0]);
@@ -49,7 +45,7 @@ function AlbumDetails() {
 
   const downloadFile = async (songId) => {
     const link = document.createElement("a");
-    link.href = `https://musicplayeralbum-main.onrender.com/song/${songId}`;
+    link.href = `${BASE_URL}/song/${songId}`;
     link.setAttribute("download", `${songId}.mp3`);
     document.body.appendChild(link); // Append link to the body
     link.click();
@@ -65,7 +61,7 @@ function AlbumDetails() {
           <div className="album-details-content">
             <div className="album-details-left">
               <img
-                src={`https://musicplayeralbum-main.onrender.com/uploads/${albums.coverImage}`}
+                src={`${BASE_URL}/uploads/${albums.coverImage}`}
                 alt="Album Cover"
                 className="album-cover"
               />

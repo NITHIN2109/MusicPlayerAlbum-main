@@ -1,9 +1,11 @@
+/* Remove Album Management CSS */
 .albumcontainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
 }
+
 .album-header {
   width: 99%;
   margin: 10px;
@@ -46,7 +48,17 @@
   grid-template-columns: auto auto;
   width: fit-content;
 }
-
+.image {
+  width: 300px;
+  padding: 5px;
+  text-align: center;
+}
+.image > img {
+  margin: 10px;
+  border-radius: 20px;
+  width: 250px;
+  height: 300px;
+}
 .addalbumform > label {
   margin: 10px 10px 10px 50px;
   text-align: right;
@@ -127,136 +139,21 @@
   margin: 5px;
   font-size: 20px;
 }
-.Usermanagement {
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.delete-button {
-  cursor: pointer;
-  border: none;
-  background-color: rgb(0, 255, 4);
-  padding: 5px;
-  color: #000000;
-  font-weight: bold;
-  font-size: medium;
-}
-.update-button {
-  cursor: pointer;
-  border: none;
-  background-color: rgb(0, 255, 4);
-  padding: 5px;
-  color: #000000;
-  font-weight: bold;
-  font-size: medium;
-}
-.adduser {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 50px 20px 50px 20px;
-}
-.adduser > form {
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0px 0px 10px rgb(255, 255, 255);
-}
-.addUserBtn {
-  position: absolute;
-  top: 50px;
-  right: 280px;
-  padding: 10px;
-}
-.adduserButton {
-  font-size: 20px;
-}
-.adduser > input {
-  width: 250px;
-  height: 25px;
-  margin: 10px;
-  font-size: 20px;
-}
-.us {
-  width: 150px;
-}
-.bt {
-  width: fit-content;
-  font-size: larger;
-  margin: 10px;
-  background-color: azure;
-  cursor: pointer;
-}
-.UserList {
-  margin-left: 20px;
-  width: 45%;
-}
-
-.userTable {
-  width: fit-content;
-  border-collapse: separate;
-  margin-top: 15px;
-  gap: 10px;
-  width: 100%;
-  font-size: larger;
-  font-weight: 500;
-}
-
-.userTable th {
-  text-align: center;
-  padding: 10px;
-  background-color: #ffffff;
-  color: black;
-}
-
-.userTable td {
-  padding: 8px;
-}
-
-.userTable tr:hover {
-  /* border-collapse: collapse; */
-  background-color: #ff8800;
-}
-.music {
-  width: 100%;
-}
-.playmusic {
-  width: 50px;
-}
-
-.image {
-  display: flex;
-}
-.image img {
-  width: 300px;
-  height: 300px;
-}
-.image > img {
-  border-radius: 20px;
-  border: 5px solid black;
-}
-.albumdetails {
-  /* border: 5px solid orange; */
-  /* display: flex; */
-  margin: 20px;
-
-  width: 95%;
-  position: relative;
-  /* gap: 100px; */
-}
 .album-left {
-  margin: 0px;
-  padding: 0px;
-  width: 40%;
+  box-shadow: 1px -1px 10px rgb(255, 255, 255);
+
+  margin: 20px 20px 20px 30px;
+  padding: 15px;
+  width: 30%;
   position: absolute;
-  /* border: 1px solid white; */
+  text-align: justify;
+  border: 5px rgb(255, 255, 255) solid;
+  border-radius: 30px;
 }
-.album-left > h1 {
-  margin: 0px;
+.album_detailsa {
+  padding: 0px 10px 0px 10px;
 }
-.album-left > h3 {
-  margin: 5px;
-}
+
 .edit-form label {
   display: block;
   margin-bottom: 5px;
@@ -277,11 +174,11 @@
 }
 .album-right {
   margin-left: 100px;
+
   position: absolute;
   width: 60%;
   top: 0px;
   right: 0px;
-  /* border: 1px solid rgb(255, 255, 255); */
 }
 .addsong {
   display: flex;
@@ -291,10 +188,10 @@
   width: 80%;
   height: 110px;
   background: transparent;
-  box-shadow: 1px -1px 10px black;
+  margin-top: 40px;
   border-radius: 10px;
   text-align: justify;
-  border: 1px solid black;
+  border: 5px solid rgb(255, 255, 255);
 }
 .addsong > h4 {
   height: 10px;
@@ -325,19 +222,16 @@
   text-decoration: underline;
 }
 
-/* button {
-  margin-right: 10px;
-} */
 .asong li {
   list-style: none;
 }
 .songTable {
-  box-shadow: 1px -1px 10px black;
+  box-shadow: 1px -1px 10px rgb(255, 255, 255);
   border-radius: 10px;
   border-collapse: separate;
   border-spacing: 0px 10px;
   padding: 10px;
-  border: 1px solid black;
+  border: 5px solid rgb(255, 255, 255);
   width: 100%;
   font-size: larger;
 }
@@ -381,8 +275,15 @@
   background-color: transparent;
   border: none;
   font-size: 28px;
-  /* border: 1px solid white; */
 }
 .action-btnh:hover {
   color: rgb(0, 255, 0);
+}
+.singlealbumbtn {
+  width: fit-content;
+  height: 25px;
+  margin-right: 5px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
 }

@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import "./usermanagemnr.css";
 import { useAlbum } from "../../contexts/alubmscontext";
 import axios from "axios";
-
+import BASE_URL from "../../config/config";
 import Modal from "./addalbummodal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import the CSS for styling
+import "./usermanagemnr.css";
 function AlbumManagement() {
   const { albums, refreshAlbums } = useAlbum();
   const [showModal, setShowModal] = useState(false);
@@ -30,15 +33,19 @@ function AlbumManagement() {
     }
     console.log(newformdata);
     axios
-      .post("https://musicplayeralbum-main.onrender.com/Album", newformdata, {
+      .post(`${BASE_URL}/Album`, newformdata, {
         withCredentials: true,
       })
+
       .then((res) => {
         console.log(res);
-        alert(res.data.message);
+        toast.success(res.data.message);
         refreshAlbums();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        console.log(err);
+      });
     toggleModal();
   };
 
@@ -51,6 +58,7 @@ function AlbumManagement() {
   };
   return (
     <div className="albumcontainer">
+      <ToastContainer />
       <div>
         <Modal
           showModal={showModal}
@@ -75,7 +83,7 @@ function AlbumManagement() {
             <Link to={`/dashboard/album/${album.id}`} key={album.id}>
               <div className="album-card">
                 <img
-                  src={`https://musicplayeralbum-main.onrender.com/uploads/${album.coverImage}`}
+                  src={`${BASE_URL}/uploads/${album.coverImage}`}
                   alt="Album Cover"
                 />
                 <p>

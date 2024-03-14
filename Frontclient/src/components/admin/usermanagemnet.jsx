@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./usermanagemnr.css";
+import BASE_URL from "../../config/config";
+import "./usermanagemant.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserManagement = ({ users, setUsers }) => {
   const [filteredUsers, setFilteredUsers] = useState(users);
@@ -22,11 +25,11 @@ const UserManagement = ({ users, setUsers }) => {
   const handleAddUser = (e) => {
     e.preventDefault();
     if (!newUser.Name || !newUser.Email || !newUser.Password || !newUser.role) {
-      alert("Please fill out all fields");
+      toast.error("Please fill out all fields");
       return;
     }
     axios
-      .post("https://musicplayeralbum-main.onrender.com/users", newUser, { withCredentials: true })
+      .post(`${BASE_URL}/users`, newUser, { withCredentials: true })
       .then((response) => {
         if (response.status === 201) {
           setFilteredUsers((prevUsers) => [
@@ -35,13 +38,14 @@ const UserManagement = ({ users, setUsers }) => {
           ]);
           setUsers((prevUsers) => [...prevUsers, response.data.details]);
           setNewUser({ Name: "", Email: "", Password: "", role: "" });
+          toast.success("User added successfully");
         } else {
-          alert(response.data.message);
+          toast.error(response.data.message);
         }
       })
       .catch((error) => {
         if (error.response.status === 500) {
-          alert(error.response.data.Error);
+          toast.error(error.response.data.Error);
         }
         console.error("Error adding user:", error);
       });
@@ -49,7 +53,7 @@ const UserManagement = ({ users, setUsers }) => {
 
   const handleDeleteUser = (userId) => {
     axios
-      .delete(`https://musicplayeralbum-main.onrender.com/users/${userId}`, {
+      .delete(`${BASE_URL}/users/${userId}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -57,16 +61,17 @@ const UserManagement = ({ users, setUsers }) => {
           prevUsers.filter((user) => user.id !== userId)
         );
         setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+        toast.success("User deleted successfully");
       })
       .catch((error) => {
         console.log(error);
-        alert(error.response.data);
+        toast.error(error.response.data);
       });
   };
 
   const handleUpdateUser = (userId, updatedUserData) => {
     axios
-      .put(`https://musicplayeralbum-main.onrender.com/users/${userId}`, updatedUserData, {
+      .put(`${BASE_URL}/users/${userId}`, updatedUserData, {
         withCredentials: true,
       })
       .then((response) => {
@@ -80,9 +85,11 @@ const UserManagement = ({ users, setUsers }) => {
             user.id === userId ? { ...user, ...response.data.details } : user
           )
         );
+        toast.success("User updated successfully");
       })
       .catch((error) => {
         console.error("Error updating user:", error);
+        toast.error("Failed to update user. Please try again later.");
       });
   };
 
@@ -98,9 +105,11 @@ const UserManagement = ({ users, setUsers }) => {
     );
     setFilteredUsers(filtered);
   }, [searchInput, users]);
+
   return (
     <div className="Usermanagement user-dashboard-container">
       <div className="UserList">
+        <ToastContainer />
         <h1>
           UserList &nbsp;&nbsp;&nbsp;
           <input
@@ -114,21 +123,23 @@ const UserManagement = ({ users, setUsers }) => {
         <table className="userTable">
           <thead>
             <tr>
-              <th>UserName</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Role</th>
-              <th colSpan={2}>Action</th>
+              <th className="username-header">UserName</th>
+              <th className="email-header">Email</th>
+              <th className="password-header">Password</th>
+              <th className="role-header">Role</th>
+              <th colSpan={2} className="action-header">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => (
-              <tr key={user.Email}>
-                <td>{user.Name}</td>
-                <td>{user.Email}</td>
-                <td>{user.Password}</td>
-                <td>{user.role}</td>
-                <td>
+            {filteredUsers.map((user, index) => (
+              <tr key={`${user.Email}-${index}`}>
+                <td className="username-cell">{user.Name}</td>
+                <td className="email-cell">{user.Email}</td>
+                <td className="password-cell">{user.Password}</td>
+                <td className="role-cell">{user.role}</td>
+                <td className="delete-cell">
                   <button
                     onClick={() => {
                       handleDeleteUser(user.id);
@@ -138,7 +149,7 @@ const UserManagement = ({ users, setUsers }) => {
                     Delete
                   </button>
                 </td>
-                <td>
+                <td className="update-cell">
                   <button
                     className="update-button"
                     onClick={() => {

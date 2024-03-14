@@ -6,13 +6,13 @@ import AlbumManagement from "./admin/albumManagement";
 import SingleAlbum from "./admin/singlealbum";
 
 import AdminHome from "./admin/adminhome";
-
+import BASE_URL from "../config/config";
 const Admindashboard = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://musicplayeralbum-main.onrender.com/users", { withCredentials: true })
+      .get(`${BASE_URL}/users`, { withCredentials: true })
       .then((response) => {
         setUsers(response.data);
       })
