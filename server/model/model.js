@@ -1,52 +1,32 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
+
 const config = require('../config/config.js');
 
-let connection;
+let pool;
 
-function connect() {
-  connection = mysql.createConnection({
+async function connect() {
+  pool = await mysql.createPool({
     host: config.host,
     user: config.user,
     password: config.password,
     database: config.database,
+    // Optional: Set connection pool size and idle timeout
+    connectionLimit: 10, // Maximum number of connections in the pool
+    queueLimit: 0, // No waiting queue for connections
+    waitForConnections: true, // Wait if pool is full
+    idleTimeoutMillis: 10000, // Close idle connections after 10 seconds
   });
-
-  connection.connect((err) => {
-    if (err) {
-      console.error('Error connecting to database:', err.message);
-      // Retry connection after a delay
-      setTimeout(connect, 5000); // Retry connection after 5 seconds
-    } else {
-      console.log('Database connected');
-    }
-  });
-
-  connection.on('error', (err) => {
-    console.error('Database connection error:', err.message);
-    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-      console.log('Reconnecting to database...');
-      connect(); // Reconnect to the database
-    } else {
-      throw err;
-    }
-  });
+  console.log('Database connected');
 }
 
-// Initial connection
+async function query(sql, params) {
+  try {
+    const [results] = await pool.query(sql, params);
+    return results;
+  } catch (err) {
+    console.error('Error executing database query:', err.message); }
+}
+
 connect();
-
-function query(sql, params, callback) {
-  if (!connection || connection.state !== 'authenticated') {
-    console.log('Reconnecting to database...');
-    connect(); // Reconnect to the database if not connected
-  }
-
-  connection.query(sql, params, (err, results) => {
-    if (err) {
-      console.error('Error executing database query:', err.message);
-    }
-    callback(err, results);
-  });
-}
 
 module.exports = { query };
