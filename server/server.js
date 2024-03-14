@@ -12,6 +12,7 @@ app.use(
       "https://musicplayernithin2109.onrender.com",
       "http://musicplayernithin2109.onrender.com",
       "http://localhost:3000",
+      "https://cautious-lamp-x7ppg94vwrgfvwgg-3000.app.github.dev"
     ],
   })
 );
