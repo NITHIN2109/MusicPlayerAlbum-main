@@ -1,7 +1,7 @@
 let config = {
   host: "sql.freedb.tech",
   user: "freedb_Nithin",
-  password: "$nrM*EruC2?XTy%",
+  password: "P9$r?$?dXQz?mgG",
   database: "freedb_albums",
 };
 
