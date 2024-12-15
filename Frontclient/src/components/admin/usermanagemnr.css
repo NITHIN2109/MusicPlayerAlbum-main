@@ -1,0 +1,289 @@
+/* Remove Album Management CSS */
+.albumcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.album-header {
+  width: 99%;
+  margin: 10px;
+}
+.album-header > h1 {
+  display: inline;
+  font-size: 24px;
+  margin-right: 200px;
+}
+.overlay {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 50%;
+  background-image: url("../backgroungdimages/addalbum.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: right 5s ease-in;
+}
+.overlay.active {
+  opacity: 1; /* Set the desired opacity */
+}
+
+.content {
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.405);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(255, 255, 255); /* Shadow effect */
+}
+.content > form {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: fit-content;
+}
+.image {
+  width: 300px;
+  padding: 5px;
+  text-align: center;
+}
+.image > img {
+  margin: 10px;
+  border-radius: 20px;
+  width: 250px;
+  height: 300px;
+}
+.addalbumform > label {
+  margin: 10px 10px 10px 50px;
+  text-align: right;
+  padding: 5px;
+}
+.addalbumform > input {
+  margin: 10px 25px 5px 25px;
+  width: 300px;
+  height: 30px;
+  font-size: 24px;
+  border: 1px solid black;
+}
+.album-body {
+  padding: 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.btn-submitalbum {
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+  font-size: 24px;
+  background-color: rgb(0, 0, 0, 0.7);
+  color: white;
+  border: 2px solid rgb(167, 164, 164);
+}
+.btn-closealbum {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding-top: 6px;
+  height: 40px;
+  font-size: 24px;
+  background-color: rgb(254, 255, 254);
+  color: rgb(0, 0, 0);
+  border: 2px solid rgb(167, 164, 164);
+  border-radius: 50%;
+}
+.btn-addalbum {
+  width: 150px;
+  height: 40px;
+  font-size: 24px;
+
+  color: rgb(115, 94, 94);
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+.sin {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: larger;
+  margin: 10px 20px 10px 0px;
+}
+.sin:hover {
+  background-color: orange;
+  color: white;
+}
+.editForm {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: fit-content;
+}
+.editForm > label {
+  width: fit-content;
+  height: 25px;
+  margin: 5px;
+  font-size: 20px;
+}
+.editForm > input {
+  width: 250px;
+  height: 25px;
+  margin: 5px;
+  font-size: 20px;
+}
+.album-left {
+  box-shadow: 1px -1px 10px rgb(255, 255, 255);
+
+  margin: 20px 20px 20px 30px;
+  padding: 15px;
+  width: 30%;
+  position: absolute;
+  text-align: justify;
+  border: 5px rgb(255, 255, 255) solid;
+  border-radius: 30px;
+}
+.album_detailsa {
+  padding: 0px 10px 0px 10px;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-form input {
+  margin-bottom: 10px;
+}
+.editbtn {
+  width: 100px;
+  margin: 5px 10px 10px 120px;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(0, 255, 0);
+}
+.album-right {
+  margin-left: 100px;
+
+  position: absolute;
+  width: 60%;
+  top: 0px;
+  right: 0px;
+}
+.addsong {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 110px;
+  background: transparent;
+  margin-top: 40px;
+  border-radius: 10px;
+  text-align: justify;
+  border: 5px solid rgb(255, 255, 255);
+}
+.addsong > h4 {
+  height: 10px;
+  text-align: justify;
+}
+.addsong > form {
+  margin: 5px 0px 5px 100px;
+}
+.addsong > form > input[type] .addsongbtn {
+  padding: 1px;
+  font-size: 20px;
+  margin: 10px 0px 10px 50px;
+}
+.addsongbtn {
+  margin: 5px 5px 5px 50px;
+}
+.song-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.song-list li {
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.song-list li:hover {
+  text-decoration: underline;
+}
+
+.asong li {
+  list-style: none;
+}
+.songTable {
+  box-shadow: 1px -1px 10px rgb(255, 255, 255);
+  border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+  padding: 10px;
+  border: 5px solid rgb(255, 255, 255);
+  width: 100%;
+  font-size: larger;
+}
+
+.songTable > .thead {
+  background-color: #ff8800;
+  border-radius: 5px;
+}
+
+.songTable > thead > tr {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.songTable > thead > tr > th {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.indexa,
+.duration_a {
+  width: 10%;
+  text-align: center;
+}
+
+.song_title {
+  width: 50%;
+}
+
+.action-btn {
+  width: 20%;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.action-btnh {
+  width: 50%;
+  margin: 0px 0px;
+  color: white;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 28px;
+}
+.action-btnh:hover {
+  color: rgb(0, 255, 0);
+}
+.singlealbumbtn {
+  width: fit-content;
+  height: 25px;
+  margin-right: 5px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+}

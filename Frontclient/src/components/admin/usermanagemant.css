@@ -1,0 +1,166 @@
+.Usermanagement {
+    width: 100%;
+    position: relative;
+  }
+  
+  .delete-button,
+  .update-button {
+    cursor: pointer;
+    border: none;
+    background-color: rgb(0, 255, 4);
+    padding: 5px;
+    color: #000000;
+    font-weight: bold;
+    font-size: medium;
+  }
+  
+  .adduser {
+    position: absolute;
+    width: 45%;
+    right: 0px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 5px 50px 20px;
+  }
+  
+  .adduser > form {
+    border: 5px solid white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+  }
+  
+  .addUserBtn {
+    position: absolute;
+    top: -20px;
+    right: 280px;
+    padding: 10px;
+  }
+  
+  .adduserButton {
+    font-size: 20px;
+  }
+  
+  .adduser > input {
+    width: 230px;
+    height: 25px;
+    margin: 10px;
+    font-size: 20px;
+  }
+  
+  .us {
+    width: 150px;
+  }
+  
+  .bt {
+    width: fit-content;
+    font-size: larger;
+    margin: 10px;
+    background-color: azure;
+    cursor: pointer;
+  }
+  
+  .Toastify__toast-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+  }
+  
+  .Toastify__toast {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 15px 20px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+  }
+  
+  .Toastify__toast--success {
+    background-color: #dff0d8;
+    color: #468847;
+  }
+  
+  .Toastify__toast--error {
+    background-color: #f4d0d5;
+    color: #b9555f;
+  }
+  
+  .UserList {
+    position: absolute;
+    width: 65%;
+    margin-left: 20px;
+  }
+  
+  .userTable {
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  .userTable th {
+    text-align: center;
+    padding: 10px;
+    background-color: #ff8800;
+    color: white;
+  }
+  
+  .userTable td {
+    max-width: 200px;
+    padding: 5px;
+  }
+  
+  .delete-button,
+  .update-button {
+    cursor: pointer;
+    border: none;
+    background-color: rgb(0, 255, 4);
+    padding: 5px;
+    color: #000000;
+    font-weight: bold;
+    font-size: medium;
+  }
+  
+  .delete-button:hover,
+  .update-button:hover {
+    background-color: rgb(0, 200, 0);
+  }
+  
+  .username-cell,
+  .username-header {
+    width: auto;
+    min-width: 100px;
+  }
+  
+  .email-cell,
+  .email-header {
+    width: 10px;
+  }
+  
+  .password-cell,
+  .password-header {
+    width: auto;
+    min-width: 20px;
+  }
+  
+  .role-cell,
+  .role-header {
+    width: auto;
+    min-width: 100px;
+  }
+  
+  .delete-cell,
+  .update-cell {
+    width: auto;
+    min-width: 100px;
+  }
+  .userTable tr:hover {
+    background-color: #ff8800; /* Change to the desired hover background color */
+  }
+  
